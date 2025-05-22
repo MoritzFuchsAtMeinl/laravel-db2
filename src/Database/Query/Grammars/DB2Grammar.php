@@ -12,6 +12,8 @@ use Illuminate\Database\Query\Builder;
  */
 class DB2Grammar extends Grammar
 {
+    protected $tablePrefix;
+    
     /**
      * The format for database stored dates.
      *
