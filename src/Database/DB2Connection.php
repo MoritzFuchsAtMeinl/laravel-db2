@@ -116,11 +116,11 @@ class DB2Connection extends Connection
     }
 
     /**
-     * @param QueryGrammar $grammar
+     * @param \Illuminate\Database\Grammar $grammar
      *
-     * @return $this
+     * @return \Illuminate\Database\Grammar
      */
-    protected function withTablePrefix(QueryGrammar $grammar){
+    protected function withTablePrefix($grammar){
         return $grammar;
     }
 
@@ -133,10 +133,10 @@ class DB2Connection extends Connection
     {
         switch ($this->config['driver']) {
             case 'db2_expressc_odbc':
-                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar);
+                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar($this));
                 break;
             default:
-                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar);
+                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar($this));
                 break;
         }
 
